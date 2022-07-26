@@ -1,7 +1,5 @@
 const endpoint =
-    "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
-
-
+    "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/";
 const cities = [];
 
 fetch(endpoint)
@@ -12,9 +10,12 @@ function findMatches(wordToMatch) {
     return cities.filter((place) => {
         // usar o filter para filtrar as palavras que dão match com o que for pesquisado
         const regex = new RegExp(wordToMatch, "gi");
-        return place.city.match(regex) || place.state.match(regex);
+
+        return place.nome.match(regex);
     });
 }
+
+console.log(cities);
 
 function numberWithDot(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -22,21 +23,18 @@ function numberWithDot(x) {
 
 function displayMatches() {
     const matchAray = findMatches(this.value, cities);
+    console.log(this.value);
     const html = matchAray
         .map((place) => {
             const regex = new RegExp(this.value, "gi");
-            const cityName = place.city.replace(
+            const cityName = place.nome.replace(
                 regex,
                 `<span class"h1">${this.value}</span>`
             );
-            const stateName = place.state.replace(
-                regex,
-                `<span class"h1">${this.value}</span>`
-            );
+
             return `
       <li>
-        <span class="name" >${cityName}, ${stateName}</span>
-        <span class="population" >${numberWithDot(place.population)}</span>
+        <span class="name" >${cityName}</span>       
       </li>
     `;
         })
