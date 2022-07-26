@@ -6,12 +6,6 @@ html {
     font-weight: 200;
 }
 
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-}
-
 input {
     width: 100%;
     padding: 20px;
@@ -29,11 +23,7 @@ input.search {
     text-align: center;
     outline: 0;
     border: none;
-    /* border: 10px solid #F7F7F7; */
     width: 100%;
-    /* left: -10%;
-    position: relative;
-    top: 10px; */
     z-index: 2;
     border-radius: 5px;
     font-size: 18px;
@@ -44,7 +34,6 @@ input.search {
     margin: 0;
     padding: 0;
     position: relative;
-    /*perspective: 20px;*/
 }
 
 .suggestions li {
